@@ -21,7 +21,7 @@ WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 12;
 
 ![MTD Loan Applications](https://github.com/user-attachments/assets/a45ebd03-afa2-4e7a-897a-d89ddcc94b69)
 ```sql
-Total Loan Applications
+-- Total Loan Applications
 SELECT COUNT(id) AS Total_Applications 
 FROM bank_loan_data_db;
 ```
@@ -33,7 +33,26 @@ FROM bank_loan_data_db
 WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 11;
 ```
 
----
+```sql
+ -- PMTD Loan Applications
+SELECT COUNT(id) AS Total_Applications 
+FROM bank_loan_data_db
+WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 11;
+```
+
+```sql
+-- MTD Total Funded Amount
+ SELECT SUM(loan_amount) AS Total_Funded_Amount 
+FROM bank_loan_data_db
+WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 12;
+```
+
+```sql
+-- Total Funded Amount
+SELECT SUM(loan_amount) AS Total_Funded_Amount 
+FROM bank_loan_data_db;
+```
+
 
 ## Conclusion
 
