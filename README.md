@@ -55,6 +55,7 @@ Thank you for visiting this project! If you have any questions, suggestions, or 
 
 - **GitHub**: [Your GitHub Profile](https://github.com/Lidolkn)
 - **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/lidonguyen/)
+- **PowerBi**: [Your Powerbi Profile](https://www.novypro.com/profile_projects/lido-nguyen)
 I appreciate your interest and time spent exploring this project. Your feedback is invaluable to me!
 
 ---
