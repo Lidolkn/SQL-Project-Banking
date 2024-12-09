@@ -49,5 +49,5 @@ By combining detailed field-level analysis with a broader understanding of domai
    - Use "Understanding Key Bank Loan Dataset Fields" to familiarize yourself with specific data points and their applications.
 3. **Integrate Insights**:
    - Apply the knowledge from these documents to analyze loan datasets, design lending strategies, or support business decision-making.
-   - 
+    
 For any questions or contributions, feel free to reach out!
