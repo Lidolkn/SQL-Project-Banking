@@ -12,6 +12,13 @@ This project analyzes a dataset of bank loans to derive meaningful insights and 
 
 ## Queries and Results
 
+MTD Loan Applications
+SELECT COUNT(id) AS Total_Applications 
+FROM bank_loan_data_db
+WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 12;
+![MTD Loan Applications](https://github.com/user-attachments/assets/a45ebd03-afa2-4e7a-897a-d89ddcc94b69)
+
+
 
 ---
 
