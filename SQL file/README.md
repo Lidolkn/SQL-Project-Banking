@@ -12,6 +12,15 @@ This project analyzes a dataset of bank loans to derive meaningful insights and 
 
 ## Queries and Results
 
+Show a few SQL results 
+
+```sql
+-- Total Loan Applications
+SELECT COUNT(id) AS Total_Applications 
+FROM bank_loan_data_db;
+```
+![Total Loan Applications](https://github.com/user-attachments/assets/3b7d2ec5-5670-4a96-86e6-c09010fdc531)
+
 MTD Loan Applications
 ```sql
 SELECT COUNT(id) AS Total_Applications 
@@ -20,11 +29,6 @@ WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 12;
  ```
 
 ![MTD Loan Applications](https://github.com/user-attachments/assets/a45ebd03-afa2-4e7a-897a-d89ddcc94b69)
-```sql
--- Total Loan Applications
-SELECT COUNT(id) AS Total_Applications 
-FROM bank_loan_data_db;
-```
 
 ```sql
   -- PMTD Loan Applications
@@ -32,13 +36,7 @@ SELECT COUNT(id) AS Total_Applications
 FROM bank_loan_data_db
 WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 11;
 ```
-
-```sql
- -- PMTD Loan Applications
-SELECT COUNT(id) AS Total_Applications 
-FROM bank_loan_data_db
-WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 11;
-```
+![PMTD Loan Applications](https://github.com/user-attachments/assets/4d0f2838-aae4-456f-ba34-944792a640f4)
 
 ```sql
 -- MTD Total Funded Amount
@@ -46,12 +44,64 @@ WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 11;
 FROM bank_loan_data_db
 WHERE MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) = 12;
 ```
+![MTD Total Funded Amount](https://github.com/user-attachments/assets/8f573fcc-6f76-4fd5-9800-6102743528cb)
 
 ```sql
--- Total Funded Amount
-SELECT SUM(loan_amount) AS Total_Funded_Amount 
-FROM bank_loan_data_db;
+-- Loans status
+SELECT
+        loan_status,
+        COUNT(id) AS LoanCount,
+        SUM(total_payment) AS Total_Amount_Received,
+        SUM(loan_amount) AS Total_Funded_Amount,
+        AVG(int_rate * 100) AS Interest_Rate,
+        AVG(dti * 100) AS DTI
+    FROM
+        bank_loan_data_db
+    GROUP BY
+        loan_status
 ```
+![Loan Status](https://github.com/user-attachments/assets/be96ce46-6a75-493f-94d5-eb613674d9db)
+
+```sql
+-- MONTH
+SELECT 
+    MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')) AS Month_Number, 
+    MONTHNAME(STR_TO_DATE(issue_date, '%Y-%m-%d')) AS Month_Name, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM bank_loan_data_db
+GROUP BY MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d')), MONTHNAME(STR_TO_DATE(issue_date, '%Y-%m-%d'))
+ORDER BY MONTH(STR_TO_DATE(issue_date, '%Y-%m-%d'));
+```
+
+![MONTH](https://github.com/user-attachments/assets/2ba7c09a-2283-49ba-8337-03849c83074f)
+
+```sql
+-- state
+SELECT 
+    address_state AS State,  -- Select the state (renaming the column to "State" in the output)
+    COUNT(id) AS Total_Loan_Applications,  -- Count the number of loan applications
+    SUM(loan_amount) AS Total_Funded_Amount,  -- Sum of the loan amounts (total funded)
+    SUM(total_payment) AS Total_Amount_Received  -- Sum of the total payments received
+FROM bank_loan_data_db  -- From the "bank_loan_data_db" table
+GROUP BY address_state  -- Group the results by state
+ORDER BY address_state;  -- Sort the results alphabetically by state
+```
+![STATE](https://github.com/user-attachments/assets/b5ca543c-7764-4706-acce-cefb0a0fe658)
+
+```sql
+-- HOME OWNERSHIP
+SELECT 
+	home_ownership AS Home_Ownership, 
+	COUNT(id) AS Total_Loan_Applications,
+	SUM(loan_amount) AS Total_Funded_Amount,
+	SUM(total_payment) AS Total_Amount_Received
+FROM bank_loan_data_db
+GROUP BY home_ownership
+ORDER BY home_ownership
+```
+![Home Ownerschip](https://github.com/user-attachments/assets/01180311-b411-404a-b446-1fdb39f548e3)
 
 
 ## Conclusion
